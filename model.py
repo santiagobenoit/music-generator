@@ -70,10 +70,22 @@ def generator(data_dir, seed=None):
 def init_model(submodel):
     model = None
     if submodel == 'chords':
-        input_layer = Input((None, notes))
-        hidden_layer = Bidirectional(LSTM(128, return_sequences=True, recurrent_dropout=0.2), merge_mode='concat')(input_layer)
-        output_layer = TimeDistributed(Dense(notes, activation='sigmoid'))(hidden_layer)
-        model = Model(input_layer, output_layer)
+        #input_layer = Input((None, notes))
+        #hidden_layer = Bidirectional(LSTM(128, return_sequences=True, recurrent_dropout=0.5), merge_mode='concat')(input_layer)
+        #output_layer = TimeDistributed(Dense(notes, activation='sigmoid'))(hidden_layer)
+        #model = Model(input_layer, output_layer)
+        #model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['acc'])
+        input_vector = Input((None, notes))
+        input_layer = TimeDistributed(Dense(notes, activation='sigmoid'))(input_vector)
+        previous_layer = input_layer
+        for units in reversed(range(notes // 4, notes + 1)):
+            hidden_layer = Bidirectional(LSTM(units, return_sequences=True, recurrent_dropout=0.5), merge_mode='concat')(previous_layer)
+            previous_layer = hidden_layer
+        for units in range(notes // 4, notes + 1):
+            hidden_layer = Bidirectional(LSTM(units, return_sequences=True, recurrent_dropout=0.5), merge_mode='concat')(previous_layer)
+            previous_layer = hidden_layer
+        output_layer = TimeDistributed(Dense(notes, activation='sigmoid'))(previous_layer)
+        model = Model(input_vector, output_layer)
         model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['acc'])
     return model
 
