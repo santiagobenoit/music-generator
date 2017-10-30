@@ -1,6 +1,6 @@
 # Project Euterpe
 ### By Santiago Benoit
-Project Euterpe (named after Euterpe, the Muse of music in Greek mythology) is a research project on applying machine learning to music composition, which I am doing for my senior year independent study. In this project, I explore using recurrent neural networks and variational autoencoders to generate quality music. To solve the problem of incoherent generated music and to give the user more control, the song is broken into multiple layers of abstraction, each with its own trained neural network. My hope is that this project can be used as a tool in conjuction with digital audio workstations to inspire artists. This project is currently a work in progress.
+Project Euterpe (named after Euterpe, the Muse of music in Greek mythology) is a research project on applying machine learning to music composition, which I am doing for my senior year independent study. In this project, I explore using recurrent neural networks and variational autoencoders to generate quality music. To solve the problem of incoherent generated music and to give the user more control, the song is broken into multiple layers of abstraction, each with its own trained neural network. My hope is that this project can be used as a tool in conjunction with digital audio workstations to inspire artists. This project is currently a work in progress.
 
 ## Layers of Abstraction
 For each layer of abstraction in the song, a separate model is trained and conditioned on itself and on underlying layers.
