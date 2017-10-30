@@ -15,5 +15,5 @@ The networks used are sequence-to-sequence variational autoencoders which utiliz
 ## Future Directions
 - Add additional layers of abstraction such as rhythms so that more instruments can be included
 - Combine all neural networks into one ensemble
-- Integrate with DAWs to inspire artists and possibly for commercial use
+- Integrate with DAWs to inspire artists and to possibly use commercially
 - Fine-tune the models using reinforcement learning, where rewards are determined by the quality of the generated music
